@@ -1,0 +1,235 @@
+.user-input {
+  padding: 0px 40px 0px 25px;
+  margin: 10px 0 0 0;
+  background-color: var(--lb-bg);
+  color: #ccc;
+  border: 1px solid var(--lb-border);
+  border-left: none;
+  border-right: none;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .user-input-container {
+    min-height: 16px;
+
+    /* Display placeholder when empty */
+    &[contenteditable="plaintext-only"][placeholder]:empty::before {
+      content: attr(placeholder);
+      color: #777;
+      /* Allows clicking through the placeholder text */
+      pointer-events: none;
+      /* Ensures visibility in Firefox */
+      display: block;
+    }
+
+    /* Hide placeholder when not empty */
+    &[contenteditable="plaintext-only"][placeholder]::before {
+      content: "";
+    }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 1px 3px;
+    }
+
+    hr {
+      border: 1px solid var(--lb-border-light);
+    }
+
+    a {
+      color: #0070da;
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border-radius: 5px;
+      padding: 5px 10px;
+      text-align: left;
+      tab-size: 4;
+      position: relative;
+
+      code {
+        background: none;
+        box-shadow: none;
+        text-wrap-mode: wrap;
+        max-height: 600px;
+        overflow: auto;
+        display: block;
+        tab-size: 4;
+      }
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background-color: rgba(0, 0, 0, 0.25);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      opacity: 0;
+      transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
+      z-index: 10;
+    }
+
+    pre:hover .copy-btn {
+      opacity: 1;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.92);
+    }
+
+    .copy-btn .mdi {
+      font-size: 14px;
+      line-height: 1;
+      color: #ccc;
+      transition: color 0.2s ease;
+    }
+
+    .copy-btn:hover .mdi {
+      color: #ffffff;
+    }
+
+    .copy-btn.copied .mdi {
+      color: #82c678;
+      /* Matches your existing "responding" success green */
+    }
+
+    /* Raw View Mode Overrides */
+    &.raw {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+
+    &.active {
+      outline: none;
+      padding: 10px;
+      margin: 10px 0;
+      /* background-color: var(--lb-bg-light); */
+      border-radius: 5px;
+      /* outline-style: solid;
+      outline-width: 1px;
+      outline-color: #878787; */
+    }
+
+    &.active:focus {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: #3eabff;
+      /* background-color: #233a57; */
+    }
+  }
+
+  &.active {
+    border-radius: 0;
+    text-align: left;
+    margin-top: 15px;
+    border: none;
+    /* position: sticky;
+      bottom: 0; */
+
+    &.stuck {
+      background-color: green;
+      position: sticky;
+      bottom: 15px;
+    }
+  }
+
+  /* Floating Controls Container */
+  .user-controls {
+    /* position: sticky; */
+    /* height: 0; */
+    /* top: 8px; */
+    /* opacity: 0; */
+    background-color: var(--lb-bg);
+    box-shadow: 0 1px var(--lb-border);
+    color: #666;
+    top: 0;
+    right: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 20;
+    padding: 5px 0;
+  }
+
+  .user-controls.hidden {
+    display: none;
+  }
+
+  &:hover .user-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .user-controls button {
+    /* background-color: rgba(0, 0, 0, 0.45); */
+    background: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    line-height: 1;
+    font-size: 1.2em;
+    color: #ccc;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  }
+
+  .user-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  .user-controls button:active {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .user-controls button .mdi {
+    font-size: 1.0em;
+    line-height: 1;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .user-controls button:hover .mdi {
+    color: #ffffff;
+  }
+
+  .user-controls button.copied .mdi {
+    color: #82c678;
+  }
+
+  .user-controls .view-toggle {
+    /* padding: 4px 10px; */
+    width: auto;
+    font-size: 1.0em;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}

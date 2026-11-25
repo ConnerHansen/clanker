@@ -1,0 +1,123 @@
+html {
+    text-align: center;
+}
+
+::selection {
+    background-color: #5e8bff;
+}
+
+:root {
+    --left-bar-icon-width: 48px;
+    --left-bar-content-width: 280px;
+
+    /* Colors */
+    --lb-bg: #122032;
+    --lb-bg-light: #1c2c41;
+    --lb-bg-accent: #21334a;
+    --lb-bg-hover: #2c415a;
+    --lb-bg-active: #273e5b;
+    --lb-content-bg: #0e1a28;
+    --lb-text: #cdd6f4;
+    --lb-text-muted: #a6adc8;
+    --lb-border: #35476b;
+    --lb-border-light: #515f7a;
+    --lb-accent: #89b4fa;
+    --code-bg: #030a1c;
+}
+
+body {
+    margin: 0;
+    /* font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif; */
+    /* font-family: "Segoe UI", "Fira Sans", "Roboto", "Droid Sans", sans-serif; */
+    font-family: "Segoe UI", sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+        url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+}
+
+#app {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    text-align: center;
+    color: black;
+    text-align: left;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+/* #left-bar {
+    width: 260px;
+    background-color: #111c2a;
+    border-right: 1px solid #35476b;
+    display: flex;
+    flex-direction: column;
+} */
+
+.left-btn {
+    padding: 5px 10px;
+    color: #ccc;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid #1b293c;
+
+    &:hover {
+        background-color: #263a55;
+    }
+
+    &.active {
+        background-color: #213147;
+
+        &:hover {
+            background-color: #324b6b;
+        }
+    }
+}
+
+.view {
+    transition: opacity 0.3s ease-out;
+    transition-delay: 0.1s;
+    opacity: 1;
+
+    &.invisible {
+        opacity: 0;
+        transition: none;
+    }
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transition: all 0.2s ease;
+    /* transition: margin-left 0.2s ease, width 0.2s ease; */
+    /* Adjust based on your main layout strategy */
+}
+
+#content {
+    background-color: var(--lb-bg-light);
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 0;
+}
+
+h3.title {
+    text-align: center;
+    margin: 0;
+    padding: 16px 0;
+    border-radius: 5px 5px 0 0;
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    background-color: #162030;
+    color: #ccc;
+}

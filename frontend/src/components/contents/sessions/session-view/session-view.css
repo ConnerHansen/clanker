@@ -1,0 +1,54 @@
+.session-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--lb-content-bg);
+}
+
+.session-view-header {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--lb-border);
+  background-color: var(--lb-content-bg);
+  flex-shrink: 0;
+}
+
+.create-session-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px;
+  /* height: 32px; */
+  /* Fixed height consistent with sidebar aesthetic */
+  background-color: var(--lb-bg-active);
+  border-radius: 4px;
+  cursor: pointer;
+  /* transition: background-color 0.2s ease, color 0.2s ease; */
+  color: var(--lb-accent);
+  font-weight: 500;
+}
+
+.create-session-btn:hover {
+  background-color: var(--lb-bg-hover);
+  color: var(--lb-text);
+}
+
+.create-session-icon {
+  font-size: 16px;
+}
+
+.create-session-text {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.session-view-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

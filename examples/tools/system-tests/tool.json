@@ -1,0 +1,31 @@
+{
+  "type": "function",
+  "function": {
+    "name": "system-tests",
+    "description": "Executes the project's test command. `parameters` is an array of argv words for go test (e.g. [\"./agent\"] or [\"-run\", \"TestStoredToolRow\"]); pass [\"./...\"] to run the suite as configured.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Arguments for go test, one word per element (e.g. [\"./agent\"] or [\"-run\", \"TestX\", \"./data\"]). An empty array will not run any tests - pass [\"./...\"] to run all tests."
+        }
+      },
+      "required": [
+        "parameters"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "run": {
+    "command": "go",
+    "params": [
+      "test",
+      "${PARAMETERS}"
+    ],
+    "timeout_seconds": 30
+  }
+}

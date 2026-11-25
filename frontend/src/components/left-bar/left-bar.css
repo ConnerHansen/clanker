@@ -1,0 +1,142 @@
+#left-bar-container {
+  border-right: 1px solid var(--lb-border);
+}
+
+.left-bar {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-color: var(--lb-bg);
+  /* border-right: 1px solid var(--lb-border); */
+  transition: width 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Icon Bar Styling */
+.left-bar-icon-bar {
+  width: var(--left-bar-icon-width);
+  min-width: var(--left-bar-icon-width);
+  max-width: var(--left-bar-icon-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+  background-color: var(--lb-bg);
+  z-index: 2;
+}
+
+.left-bar-icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--lb-text-muted);
+  transition: all 0.2s ease;
+}
+
+.left-bar-icon-btn:hover {
+  background-color: var(--lb-bg-hover);
+  color: var(--lb-text);
+}
+
+.left-bar-icon-btn.active {
+  background-color: var(--lb-bg-active);
+  color: var(--lb-accent);
+}
+
+.left-bar-icon {
+  font-size: 24px;
+}
+
+/* Content Container Styling */
+.left-bar-content-container {
+  width: var(--left-bar-content-width);
+  min-width: var(--left-bar-content-width);
+  max-width: var(--left-bar-content-width);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lb-content-bg);
+  overflow: hidden;
+  /* transition: opacity 0.2s ease; */
+}
+
+.left-bar-content-header {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--lb-text-muted);
+  border-bottom: 1px solid var(--lb-border);
+  flex-shrink: 0;
+
+  h3 {
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-block-end: 0.5em;
+    margin-block-start: 0.5em;
+  }
+}
+
+.left-bar-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* Scrollbar Styling */
+.left-bar-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.left-bar-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.left-bar-scroll-area::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 3px;
+}
+
+.left-bar-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #585b70;
+}
+
+/* Utility */
+.placeholder-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--lb-text-muted);
+  font-style: italic;
+}
+
+.error-message {
+  color: #f38ba8;
+  padding: 16px;
+  font-size: 0.9rem;
+}
+
+/* 
+   Collapsed State Logic 
+   We adjust the width of the entire container.
+   The content container stays fixed width in DOM, but we hide it visually 
+   to prevent squishing.
+*/
+.left-bar.collapsed {
+  width: var(--left-bar-icon-width);
+}
+
+.left-bar.collapsed .left-bar-content-container {
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  border-right: none;
+}

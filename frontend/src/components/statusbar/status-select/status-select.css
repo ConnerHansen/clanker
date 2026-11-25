@@ -1,0 +1,146 @@
+.status-select {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column-reverse;
+  /* Puts popup above button by default */
+  align-items: flex-start;
+  padding: 5px 10px;
+}
+
+.status-select-button {
+  display: inline-flex;
+  align-items: center;
+  /* border: 1px solid #d0d5dd; */
+  /* border-radius: 999px; */
+  border: none;
+  background: none;
+  padding: 0;
+  color: #202124;
+  font-size: 14px;
+  /* font-weight: normal; */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+/* .status-select-button:hover { background: #f8f9fa; border-color: #bdc1c6; } */
+.status-select-button:focus {
+  outline: none;
+  /* border-color: #1a73e8; */
+  /* box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); */
+}
+
+/* Upward-pointing chevron */
+/* .status-select-button::after {
+  content: '';
+  border: solid #202124;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  margin-left: 8px;
+} */
+/* transition: transform 0.05s linear; */
+
+.status-select[aria-expanded="true"] .status-select-button::after {
+  transform: rotate(-135deg);
+  /* Points DOWN when open */
+  margin-left: 6px;
+  margin-right: 10px;
+}
+
+/* Popup positioned ABOVE the button */
+.status-select-popup {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  top: auto;
+  left: 0;
+  min-width: 200px;
+  max-height: 320px;
+  background: #ffffff;
+  border: 1px solid #999;
+  border-radius: 10px;
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  overflow-y: hidden;
+}
+
+.status-select[aria-expanded="true"] .status-select-popup {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  overscroll-behavior: contain;
+}
+
+/* Automatic flip if component is too close to the bottom of the viewport */
+.status-select.flip-to-bottom {
+  flex-direction: column;
+}
+
+.status-select.flip-to-bottom .status-select-popup {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.status-select.flip-to-bottom[aria-expanded="true"] .status-select-popup {
+  transform: translateY(0);
+}
+
+/* Scrollable Options List */
+.status-select-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* overflow-y: auto; */
+}
+
+/* .status-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.status-select-options::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.status-select-options::-webkit-scrollbar-thumb {
+  background-color: #c1c7cd;
+  border-radius: 3px;
+}
+
+.status-select-options::-webkit-scrollbar-thumb:hover {
+  background-color: #a3a8b0;
+} */
+
+/* Individual Options */
+.status-select-option {
+  padding: 10px;
+  cursor: pointer;
+  color: #3c4043;
+  /* transition: background 0.15s ease, color 0.15s ease; */
+  border-left: 3px solid transparent;
+  font-size: 14px;
+  user-select: none;
+}
+
+.status-select-option:hover,
+.status-select-option.focused {
+  background: #f1f3f4;
+  color: #000;
+}
+
+.status-select-option.selected {
+  background: #e8f0fe;
+  color: #1a73e8;
+  /* border-left-color: #1a73e8; */
+  /* font-weight: 500; */
+}
+
+/* .status-select-option:focus { outline: none; } */

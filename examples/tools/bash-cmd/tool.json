@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "bash-cmd",
+    "description": "Runs an arbitrary Bash shell command: the `script` parameter is passed verbatim as a single argument to bash -c, so pipes, chains (&& / ||), redirections, and quotes all work. The harness execs bash directly (no wrapper shell) and applies no escaping — write the script exactly as you want it parsed. Requires permissions to execute.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "script": {
+          "type": "string",
+          "description": "The full bash command/script to execute, verbatim (e.g. `ls -la .clanker/ | head -30 && echo done`)."
+        }
+      },
+      "required": ["script"],
+      "additionalProperties": false
+    }
+  },
+  "run": {
+    "command": "bash",
+    "params": [
+      "-c",
+      "${SCRIPT}"
+    ]
+  },
+  "requestPermission": true
+}

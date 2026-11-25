@@ -1,0 +1,38 @@
+version: "3"
+services:
+  memgraph:
+    image: memgraph/memgraph-mage
+    ports:
+      - "7687:7687"
+      - "7444:7444"
+    volumes:
+      - ./.clanker/memory/memgraph/lib:/var/lib/memgraph
+      - ./.clanker/memory/memgraph/log:/var/log/memgraph
+    networks:
+      - memory_net
+    command: ["--log-level=TRACE"]
+  lab:
+    image: memgraph/lab
+    ports:
+      - "3000:3000"
+    environment:
+      QUICK_CONNECT_MG_HOST: memgraph
+    networks:
+      - memory_net
+
+  # ChromaDB: The Vector Database
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb_vector
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.clanker/memory/chromadb:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+    networks:
+      - memory_net
+networks:
+  memory_net:
+    driver: bridge

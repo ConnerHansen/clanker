@@ -1,0 +1,81 @@
+.tree-view {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 0.9em;
+
+  .left-btn {
+    border-bottom: none;
+  }
+
+  .context-folder {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .context-folder-header {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--lb-text);
+  }
+
+  .context-folder-header:hover {
+    background-color: var(--lb-bg-hover);
+  }
+
+  .context-folder-icon {
+    font-size: 16px;
+    margin-right: 6px;
+    color: var(--lb-accent);
+  }
+
+  .context-folder-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .context-folder-content {
+    margin-left: 16px;
+    /* Indentation for nested items */
+    border-left: 1px solid var(--lb-border);
+    padding-left: 4px;
+  }
+
+  .context-folder-content {
+    display: block;
+    /* Initially visible */
+  }
+
+  .context-file-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    /* margin-left: 16px; */
+    /* Indentation for files */
+    cursor: pointer;
+    color: var(--lb-accent);
+    /* font-size: 0.85rem; */
+  }
+
+  .context-file-item:hover {
+    background-color: var(--lb-bg-hover);
+    color: var(--lb-text);
+  }
+
+  .context-file-name {
+    margin-left: 6px;
+  }
+
+  .context-icon {
+    font-size: 16px;
+  }
+
+  .context-tree-empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--lb-text-secondary);
+    /* font-size: 0.9rem; */
+  }
+}

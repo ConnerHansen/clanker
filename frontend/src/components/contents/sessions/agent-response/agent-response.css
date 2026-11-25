@@ -1,0 +1,264 @@
+.agent-output {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0px 40px 10px 25px;
+
+  .toggle {
+    font-size: 12px;
+    color: #999;
+    cursor: pointer;
+    display: block;
+    margin-top: 15px;
+  }
+
+  .thinking {
+    font-style: italic;
+    font-size: 12px;
+    color: #999;
+    border-left: 1px solid #555;
+    padding-left: 15px;
+    margin-top: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+
+    &.hidden {
+      display: none;
+      margin: 0;
+    }
+  }
+
+  .response {
+    position: relative;
+    /* Context for internal absolute elements if needed */
+    white-space: normal;
+    word-break: normal;
+    margin-top: 15px;
+    color: white;
+    line-height: 1.5;
+    /* text-align: justify; */
+
+    &.raw {
+      white-space: pre-wrap;
+      word-break: break-word;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 10px 15px;
+
+      thead {
+        background-color: var(--lb-content-bg);
+
+        th {
+          padding: 15px 10px;
+          border: 1px solid var(--lb-border-light);
+          text-align: center;
+        }
+      }
+
+      tbody {
+        tr {
+          background-color: var(--lb-bg);
+        }
+
+        tr:nth-child(even) {
+          background-color: var(--lb-bg-light);
+        }
+
+        td {
+          padding: 15px 10px;
+          border: 1px solid var(--lb-border-light);
+        }
+      }
+    }
+
+    p,
+    ul,
+    li {
+      margin: 0;
+
+      a {
+        color: #0070da;
+      }
+    }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 1px 3px;
+    }
+
+    hr {
+      border: 1px solid var(--lb-border-light);
+    }
+
+    pre {
+      position: relative;
+      background-color: var(--code-bg);
+      border-radius: 5px;
+      padding: 5px 10px 8px 10px;
+      text-align: left;
+
+      code {
+        background: none;
+        box-shadow: none;
+        text-wrap-mode: wrap;
+        tab-size: 4;
+        max-height: 600px;
+        overflow: auto;
+        display: block;
+      }
+    }
+
+    /* Legacy copy-btn styles merged into .response-controls below to avoid duplication */
+    /* Copy Button Styles */
+    .copy-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background-color: rgba(0, 0, 0, 0.25);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      opacity: 0;
+      transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.1s ease;
+      z-index: 10;
+    }
+
+    pre:hover .copy-btn {
+      opacity: 1;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.92);
+    }
+
+    .copy-btn .mdi {
+      font-size: 14px;
+      line-height: 1;
+      color: #ccc;
+      transition: color 0.2s ease;
+    }
+
+    .copy-btn:hover .mdi {
+      color: #ffffff;
+    }
+
+    .copy-btn.copied .mdi {
+      color: #82c678;
+      /* Matches your existing "responding" success green */
+    }
+  }
+
+  /* Floating Controls Container */
+  .response-controls {
+    /* position: sticky; */
+    /* Enables native viewport-top attachment */
+    /* height: 0; */
+    /* top: 8px; */
+    top: 0;
+    right: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    /* opacity: 0; */
+    /* transition: opacity 0.2s ease; */
+    pointer-events: none;
+    z-index: 10;
+    color: #ccc;
+    background-color: var(--lb-bg-light);
+    box-shadow: 0 1px var(--lb-border);
+    z-index: 20;
+    padding: 5px 0;
+    /* Prevents text from sliding under the controls */
+    /* margin-right: 40px; */
+
+    /* Copy Button */
+    .copy-btn {
+      /* background-color: rgba(0, 0, 0, 0.45); */
+      background-color: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      line-height: 1;
+      font-size: 1.2em;
+      color: #ccc;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .copy-btn:active {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .copy-btn .mdi {
+      font-size: 1.0em;
+      line-height: 1;
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+
+    .copy-btn:hover .mdi {
+      color: #ffffff;
+    }
+
+    .copy-btn.copied .mdi {
+      color: #82c678;
+    }
+
+    /* Mode Toggle Button */
+    .view-toggle {
+      /* background-color: rgba(0, 0, 0, 0.45); */
+      background-color: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* padding: 4px 10px; */
+      /* height: 38px; */
+      font-size: 1.0em;
+      font-weight: 500;
+      color: #ccc;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+
+    .view-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .view-toggle:active {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  /* Hover persists because controls are direct descendants of .agent-output */
+  &:hover .response-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

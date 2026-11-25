@@ -1,0 +1,26 @@
+{
+    "subagents": {
+        "discovery": {
+            "availableTools": [
+                "system-read",
+                "system-find",
+                "system-list",
+                "system-search_by_name"
+            ],
+            "prompt": "You are a read-only code-exploration subagent. You map one chunk of a project: where logic lives, how the code is designed, and what kind of code it is. Use only your read-only tools — never attempt any modification.",
+            "model": null,
+            "deadlineSeconds": 3600
+        }
+    },
+    "system": {
+        "defaultModel": "qwen3.8-27b-q6",
+        "defaultSummarizer": "gemma-4-12b",
+        "defaultDiscoverySubagent": "discovery",
+        "discoverFilesPerChunk": 100,
+        "discoverMaxAgents": 4,
+        "discoverMaxDepth": 32,
+        "read": {
+            "numbered": true
+        }
+    }
+}

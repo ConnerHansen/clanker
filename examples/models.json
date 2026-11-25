@@ -1,0 +1,110 @@
+[
+    {
+        "id": "qwen3.8-27b",
+        "name": "Qwen 3.8 27B Q8",
+        "executor": "llama.cpp",
+        "command": "llama-server",
+        "managed": true,
+        "port_flag": "--port",
+        "port_range": "9000-9999",
+        "params": [
+            "--no-webui",
+            "-hf",
+            "unsloth/Qwen3.8-27B-GGUF:Q8_0",
+            "--no-mmproj",
+            "--no-mmap",
+            "--jinja",
+            "--reasoning-preserve",
+            "--chat-template-kwargs",
+            "{\"reasoning_effort\": \"low\"}",
+            "--context-shift",
+            "-c",
+            "262144",
+            "--repeat-penalty",
+            "1.0",
+            "--presence-penalty",
+            "1.5",
+            "--spec-type",
+            "draft-mtp",
+            "--spec-draft-n-max",
+            "4",
+            "-fa",
+            "1",
+            "-ngl",
+            "999",
+            "-t",
+            "32",
+            "--ctx-checkpoints",
+            "16"
+        ],
+        "container": {
+            "image": "ghcr.io/ggml-org/llama.cpp:server-vulkan",
+            "gpu_backend": "vulkan",
+            "volume_mappings": {
+                "/home/conner/.cache/huggingface": "/root/.cache/huggingface"
+            }
+        }
+    },
+    {
+        "id": "inkling-2-mini-iq4",
+        "name": "Inkling 2 Mini IQ4",
+        "executor": "llama.cpp",
+        "command": "llama-server",
+        "managed": true,
+        "port_flag": "--port",
+        "port_range": "8000-9999",
+        "params": [
+            "--no-webui",
+            "-hf",
+            "ggml-org/Inkling-2-Mini-GGUF:IQ4_NL",
+            "--jinja",
+            "--context-shift",
+            "-c",
+            "262144",
+            "--no-mmproj",
+            "--load-mode",
+            "none",
+            "--temp",
+            "1.0",
+            "--top-p",
+            "1.0",
+            "-fa",
+            "1",
+            "--top-k",
+            "0",
+            "--min-p",
+            "0.0",
+            "-ngl",
+            "999",
+            "-t",
+            "32",
+            "--repeat-penalty",
+            "1.0",
+            "--presence-penalty",
+            "0.1"
+        ],
+        "reasoning": {
+            "options": [
+                "minimal",
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
+            ],
+            "default": "high",
+            "enabled": true
+        }
+    },
+    {
+        "id": "some_hosted_model",
+        "name": "Model 1234",
+        "executor": "cloud",
+        "url": "https://my.gateway.com/v1",
+        "managed": false,
+        "headers": {
+            "Authorization": "Bearer ${MY_API_TOKEN}",
+            "application": "clanker"
+        }
+    }
+]

@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "go-cmd",
+    "description": "Runs an arbitrary Go command. `parameters` is an array of argv words, passed to go verbatim (no shell, no splitting — quote-sensitive values stay intact).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "The go command and its arguments as separate words, e.g. [\"build\", \"-o\", \"out/bin\"] or [\"test\", \"./agent\"]."
+        }
+      },
+      "required": ["parameters"],
+      "additionalProperties": false
+    }
+  },
+  "run": {
+    "command": "go",
+    "params": [
+      "${PARAMETERS}"
+    ]
+  },
+  "requestPermission": true
+}

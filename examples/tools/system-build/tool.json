@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "system-build",
+    "description": "Validates that the current changes are acceptable and nothing was left out by running the project's build command. Returns build errors or a success message."
+  },
+  "run": {
+    "command": "make",
+    "params": [
+      "build"
+    ]
+  }
+}

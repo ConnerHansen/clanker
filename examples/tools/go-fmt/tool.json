@@ -1,0 +1,29 @@
+{
+  "type": "function",
+  "function": {
+    "name": "go-fmt",
+    "description": "Runs the Golang formatter. `parameters` is an array of file/package paths, passed to go fmt verbatim.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File or package paths to format, one array element each, e.g. [\"agent/tools/handler.go\"]."
+        }
+      },
+      "required": [
+        "parameters"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "run": {
+    "command": "gofmt",
+    "params": [
+      "${PARAMETERS}"
+    ]
+  }
+}

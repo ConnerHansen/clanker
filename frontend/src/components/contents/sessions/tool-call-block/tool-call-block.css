@@ -1,0 +1,75 @@
+/* ToolCallBlock — mirrors the TUI's toolCallBlock (dim cyan on success, dim
+   yellow on failure) translated to the web theme. */
+.tool-call-block {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-left: 3px solid var(--lb-border);
+  background-color: var(--lb-content-bg);
+  border-radius: 0 4px 4px 0;
+  font-family: "Segoe UI", monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--lb-text-muted);
+
+  &.pending {
+    border-left-color: var(--lb-accent);
+  }
+
+  &.completed.ok {
+    border-left-color: #4f8f9e; /* dim cyan */
+  }
+
+  &.completed.failed {
+    border-left-color: #b08a3e; /* dim yellow */
+  }
+
+  .tc-title {
+    font-weight: 600;
+    color: var(--lb-text);
+
+    &.running {
+      color: var(--lb-accent);
+    }
+
+    &.ok {
+      color: #7fd4e8;
+    }
+
+    &.failed {
+      color: #e6c37a;
+    }
+  }
+
+  .tc-row {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .tc-status {
+    font-style: italic;
+
+    &.running {
+      color: var(--lb-accent);
+    }
+
+    &.ok {
+      color: #7fd4e8;
+    }
+
+    &.failed {
+      color: #e6c37a;
+    }
+  }
+
+  .tc-params {
+    color: #9aa4b5; /* dimmer than the result line */
+  }
+
+  .tc-results {
+    color: var(--lb-text);
+  }
+
+  .hidden {
+    display: none;
+  }
+}
