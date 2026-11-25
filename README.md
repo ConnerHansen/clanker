@@ -1,10 +1,10 @@
-# Clankerv2
+# Clanker
 
-Clankerv2 is an AI-powered agent framework with a hybrid TUI/GUI interface. It allows an LLM to interact directly with a local codebase, executing tools and modifying files through a secure, permission-based system.
+Clanker is an AI-powered agent framework with a hybrid TUI/GUI interface. It allows an LLM to interact directly with a local codebase, executing tools and modifying files through a secure, permission-based system.
 
 ## How it Works
 
-Clankerv2 operates as a loop between an LLM (via OpenAI-compatible APIs) and a set of local tools.
+Clanker operates as a loop between an LLM (via OpenAI-compatible APIs) and a set of local tools.
 
 - **Tool Execution**: The agent can read files, search the codebase, and apply precise changes.
 - **Permission System**: File modifications (`system-write`, `system-modify`, `system-delete`) and command executions (`bash-cmd`, `go-cmd`, and any tool flagged `requestPermission` in its `tool.json`) are intercepted by a TUI/GUI permission prompt. This creates a blocking request in the agent loop that requires explicit user approval via the interface before the change is committed to disk. The prompt's descriptor and coloration come from the operation: creating files renders blue (info), overwriting/updating gold (warning), deleting red (danger). Executing a command renders with the gold warning treatment (same as an overwrite) and shows the fully assembled command in the content pane for review before approval.
